@@ -18,7 +18,7 @@
 let numbers = ['12', '846', '2', '1236'];
 
 // YOUR CODE GOES HERE
-const padNum = require('./padLeft.js');
+const leftPad = require('./padLeft.js');
 numbers.forEach((number) => {
-  console.log(padNum.padLeft(number, ' ', ' '));
+  console.log(leftPad.padLeft(number, ' ', ' '));
 });
