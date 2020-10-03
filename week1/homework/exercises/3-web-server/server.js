@@ -3,44 +3,26 @@
  */
 
 var http = require('http');
-const path = require('path');
+
+// const path = require('path');
 const fs = require('fs');
-// console.log(path.basename(__filename));
-// console.log(path.dirname(__filename));
-// console.log(path.extname(__filename));
-// console.log(path.parse(__filename).base);
-// console.log(path.join(__dirname, '3-web-server', 'hello.html'));
-// console.log(fs);
+
+// create validate function
+function validate(filePath, contentType) {
+  if (req.url === `'/${filePath}'`) {
+    fs.readFile(`'${filePath}'`, (err, content) => {
+      if (err) throw err;
+      res.writeHead(200, { 'content-Type': contentType });
+      res.end(content, 'utf8');
+    });
+  }
+}
+
 // //create a server
 const server = http.createServer((req, res) => {
-  console.log(req.url);
-  // fs.readFile('index.html', (err, content) => {
-  //   if (err) throw err;
-  //   res.writeHead(200, { 'content-type': 'text/html' });
-  //   res.end(content);
-  // });
-
-  if (req.url === '/') {
-    fs.readFile('index.html', (err, content) => {
-      if (err) throw err;
-      res.writeHead(200, { 'content-type': 'text/html' });
-      res.end(content, 'utf8');
-    });
-  }
-  if (req.url === '/index.js') {
-    fs.readFile('index.js', (err, content) => {
-      if (err) throw err;
-      res.writeHead(200, { 'content-type': 'text/js' });
-      res.end(content, 'utf8');
-    });
-  }
-  if (req.url === '/style.css') {
-    fs.readFile('style.css', (err, content) => {
-      if (err) throw err;
-      res.writeHead(200, { 'content-type': 'text/css' });
-      res.end(content, 'utf8');
-    });
-  }
+  validate(index.html, 'text/html');
+  validate(index.js, 'text/js');
+  validate(style.css, 'text/css');
 });
 
 const PORT = process.env.PORT || 3000;
