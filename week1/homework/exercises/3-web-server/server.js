@@ -8,21 +8,25 @@ var http = require('http');
 const fs = require('fs');
 
 // create validate function
-function validate(filePath, contentType) {
-  if (req.url === `'/${filePath}'`) {
-    fs.readFile(`'${filePath}'`, (err, content) => {
-      if (err) throw err;
-      res.writeHead(200, { 'content-Type': contentType });
-      res.end(content, 'utf8');
-    });
-  }
+function validate(fileType, contentType, res) {
+  fs.readFile(fileType, (err, content) => {
+    if (err) throw err;
+    res.writeHead(200, { 'content-Type': contentType });
+    res.end(content, 'utf8');
+  });
 }
 
 // //create a server
 const server = http.createServer((req, res) => {
-  validate(index.html, 'text/html');
-  validate(index.js, 'text/js');
-  validate(style.css, 'text/css');
+  if (req.url === '/') {
+    validate('index.html', 'text/html', res);
+  }
+  if (req.url === '/index.js') {
+    validate('index.js', 'text/js', res);
+  }
+  if (req.url === '/style.css') {
+    validate('style.css', 'text/css', res);
+  }
 });
 
 const PORT = process.env.PORT || 3000;
