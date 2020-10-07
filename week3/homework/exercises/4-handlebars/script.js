@@ -1,28 +1,13 @@
-
 /**
  * 4. Fun with Handlebars
- * 
+ *
  * Write a javascript function that simulates playing the game cards against humanity.
  * The code should choose a subject and a punchline at random,
  * then replace them in a sentece using handlebars.
- * 
+ *
  * Hints:
  * - Check the handlebars npm page for examples and documentation
  */
-
-
-function drawCard() {
-  // YOUR CODE GOES IN HERE
-}
-
-drawCard();
-
-/**
- * Given an array, return an element from it chosen at random
- */
-function getRandomElement(array) {
-  // YOUR CODE GOES IN HERE
-}
 
 const subjects = [
   'shark',
@@ -43,3 +28,28 @@ const punchlines = [
   'achieve world piece',
   'help people learn programing',
 ];
+
+const Handlebars = require('handlebars');
+function drawCard() {
+  // YOUR CODE GOES IN HERE
+  const cardData = {
+    subject: getRandomElement(subjects),
+    punchline: getRandomElement(punchlines),
+  };
+
+  const card = `{{subject}} is great to {{punchline}}`;
+  const template = Handlebars.compile(card);
+  const result = template(cardData);
+  console.log(result);
+}
+
+drawCard();
+
+/**
+ * Given an array, return an element from it chosen at random
+ */
+function getRandomElement(array) {
+  // YOUR CODE GOES IN HERE
+  const randomElement = array[Math.floor(Math.random() * array.length)];
+  return randomElement;
+}
