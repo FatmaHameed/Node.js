@@ -4,16 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <title>Hack Your Temperature</title>
 </head>
 
-<body>
-  <form action="/weather" method="POST">
-    <input type="text" name="cityName" placeholder="Enter a city">
-    <input type="submit" value="submit">
-  </form>
-  <p>{{ weatherText }} </p>
+<body class="text-center">
+  <div>
+    <form action="/weather" method="POST" class="d-block p-4">
+      <div>
+        <input type="text" name="cityName"
+          class="m-3 col-6 col-md-4 p-2 border border-info rounded-lg text-info text-center font-weight-bold"
+          placeholder="Enter a city">
+      </div>
+      <input type="submit" value="submit" class="btn btn-info ">
+    </form>
+    <p class="text-info text-center font-weight-bold">{{ weatherText }} </p>
+  </div>
 </body>
 
 </html>

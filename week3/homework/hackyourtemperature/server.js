@@ -21,31 +21,21 @@ app.post('/weather', (req, res) => {
   // res.writeHead(200, { contentType: 'text/html' });
   const cityName = req.body.cityName;
   const API_KEY = require('./sources/keys.json').API_KEY;
-  // console.log(API_KEY);
-  axios(
-    `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=${API_KEY}&units=metric`,
-  ).then((response) => {
-    console.log(response.status);
-    const temperature = response.data.main.temp;
-    // const city = response.data.name;
-    // console.log(city);
-    if (response) {
+
+  axios
+    .get(
+      `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=${API_KEY}&units=metric`,
+    )
+    .then((response) => {
+      // console.log(response.status);
+      const temperature = response.data.main.temp;
       const tempText = `The temperature in ${cityName} is ${temperature} °C`;
       res.render('index', { weatherText: tempText });
-    } else {
-      // console.log('not Found');
-      // const text = `${city} is not found`;
-      // res.end(text);
-      console.log('city not found');
+    })
+    .catch((err) => {
+      // console.error(err);
       res.render('index', { weatherText: 'City is not found!' });
-    }
-    // console.log(response.data.main.temp);
-  });
-  // .catch((err) => {
-  //   console.log(response.status + ':' + err);
-  // });
-  // res.json(cityName);
-  // res.end(cityName);
+    });
 });
 const PORT = process.env.PORT || 3000;
 
