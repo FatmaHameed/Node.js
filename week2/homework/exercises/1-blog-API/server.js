@@ -45,11 +45,11 @@ app.delete('/blogs/:title', (req, res) => {
 
 //Reading blog
 app.get('/blogs/:title', (req, res) => {
-  //store the existing blog to variable
-  const blog = fs.readFileSync(req.params.title);
   // check if blog exists
   if (fs.existsSync(req.params.title)) {
-    //send the
+     //store the existing blog to variable
+  const blog = fs.readFileSync(req.params.title);
+    //send the blog
     res.send(blog);
   } else {
     res.status(404);
