@@ -50,6 +50,5 @@ drawCard();
  */
 function getRandomElement(array) {
   // YOUR CODE GOES IN HERE
-  const randomElement = array[Math.floor(Math.random() * array.length)];
-  return randomElement;
+  return array[Math.floor(Math.random() * array.length)];
 }
